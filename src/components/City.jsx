@@ -77,7 +77,7 @@ const City = ({ colorMode }) => {
                         width={"60px"}
                         src={`https://openweathermap.org/img/wn/${city.image}@2x.png`}
                       />
-                      <Text>{Math.round(city.temp - 273.15)}</Text>
+                      <Text>{Math.round(city.temp - 273.15)}°</Text>
                     </Box>
                   </HStack>
                 </CardBody>

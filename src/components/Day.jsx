@@ -85,13 +85,13 @@ const Day = ({
                       ></Image>
                     </Flex>
                     <Text fontWeight={"medium"}>
-                      Humidity {item.main.humidity}
+                      Humidity {item.main.humidity} %
                     </Text>
                     <Text fontWeight={"medium"}>
                       Pressure {item.main.pressure}
                     </Text>
                     <Text fontWeight={"medium"}>
-                      Wind {Math.round(item.wind.speed * 3.6)}
+                      Wind {Math.round(item.wind.speed * 3.6)} km/h
                     </Text>
                     <Text fontWeight={"medium"}>
                       Wind{" "}

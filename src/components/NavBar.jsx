@@ -16,6 +16,7 @@ import { IoIosNotifications } from "react-icons/io";
 import { IoLocationSharp } from "react-icons/io5";
 import AvatarImage from "../assets/imgs/my-avatar.png";
 import { useState } from "react";
+import { SunIcon } from "@chakra-ui/icons";
 
 const NavBar = ({
   colorMode,
@@ -81,6 +82,11 @@ const NavBar = ({
             size={"lg"}
             colorScheme="teal"
           />
+          {colorMode === "light" ? (
+            <SunIcon width={"25px"} height={"25px"} />
+          ) : (
+            <FaMoon width={"25px"} height={"25px"} />
+          )}
           <Avatar width={"60px"} src={AvatarImage} />
         </Box>
       </Box>
