@@ -1,13 +1,11 @@
 import {
+  AspectRatio,
   Box,
   Button,
   Card,
   CardBody,
   CardHeader,
   Flex,
-  FormControl,
-  FormHelperText,
-  FormLabel,
   Heading,
   HStack,
   Image,
@@ -18,21 +16,33 @@ import {
 import { useEffect } from "react";
 import { useState } from "react";
 import { Form } from "react-router";
+import Day from "./Day";
+import City from "./City";
+import NavBar from "./NavBar";
 
-const WeatherData = () => {
+const WeatherData = ({ colorMode, toggleColorMode }) => {
   const [weatherData, setWeatherData] = useState({});
+  const [searchQuery, setSearchQuery] = useState("Kathmandu");
+  const [typeValue, setTypeValue] = useState("");
+  const [cityName, setCityName] = useState("Kathmandu");
 
   const weatherApi = async (cityName, apiKey) => {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`
     );
     const data = await response.json();
+    console.log(data);
     setWeatherData({
       name: data.name,
       weather: data.weather[0].main,
       image: data.weather[0].icon,
       windSpeed: data.wind.speed,
+      coord: {
+        lon: data.coord.lon,
+        lat: data.coord.lat,
+      },
     });
+    console.log(data.coord.lon, data.coord.lat);
     return data;
     // console.log(Object.values(data.weather));
     // console.log(data.weather[0].icon);
@@ -51,7 +61,16 @@ const WeatherData = () => {
   console.log(data, isLoading);
   return (
     <>
-      <Card
+      <NavBar
+        colorMode={colorMode}
+        toggleColorMode={toggleColorMode}
+        setSearchQuery={setSearchQuery}
+        setTypeValue={setTypeValue}
+        typeValue={typeValue}
+        searchQuery={searchQuery}
+        cityName={cityName}
+      />
+      {/* <Card
         maxW={"400px"}
         color={"whiteAlpha.400"}
         shadow={"sm"}
@@ -77,10 +96,49 @@ const WeatherData = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. In ullam
             facere ducimus ipsum natus dolore labore hic est quibusdam
             voluptatibus, delectus quasi, dolorum qui quos libero accusamus
-            molestias esse non.
+            molestias esse non.<
           </Text>
         </CardBody>
-      </Card>
+      </Card> */}
+
+      <Flex>
+        <Day
+          setSearchQuery={setSearchQuery}
+          searchQuery={searchQuery}
+          colorMode={colorMode}
+          toggleColorMode={toggleColorMode}
+          setCityName={setCityName}
+        />
+      </Flex>
+      <HStack
+        display={"inline-flex"}
+        justifyContent={"space-between"}
+        mt={"20px"}
+        gap={"65px"}
+      >
+        <Box
+          borderRadius="20px"
+          ml={"20px"}
+          boxShadow="2xl"
+          overflow="hidden"
+          bg="gray.800"
+          width="1100px"
+        >
+          <iframe
+            style={
+              colorMode === "light"
+                ? {}
+                : { border: "none", filter: "grayscale(1) invert(1)" }
+            }
+            width={"100%"}
+            height={"400px"}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31397712412!2d85.3025764582031!3d27.668968399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19d3cf18ca51%3A0x2b7185c6e7d87a8b!2sLalitpur%2C%20Nepal!5e0!3m2!1sen!2s!4v1709799171899!5m2!1sen!2s"
+          />
+        </Box>
+        <City colorMode={colorMode} toggleColorMode={toggleColorMode} />
+      </HStack>
     </>
   );
 };
