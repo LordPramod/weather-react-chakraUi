@@ -43,6 +43,7 @@ const NavBar = ({
       py={4}
       bg={colorMode === "light" ? "gray.100" : "gray.900"}
       shadow="sm"
+      width={{ base: "100%", md: "100%", sm: "100%" }}
     >
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"}>

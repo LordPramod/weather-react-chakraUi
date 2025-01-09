@@ -22,7 +22,9 @@ const Day = ({
   const fetchWeek = async () => {
     const apiKey = "79c50f013bfe56f8a19f17750e56738c";
     const city = "kathmandu";
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&appid=${apiKey}`);
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${searchQuery}&appid=${apiKey}`
+    );
     const data = await response.json();
     setForecast(data);
     setCityName(data.city.name);
@@ -36,17 +38,27 @@ const Day = ({
   return (
     <>
       {forecast && (
-        <Flex direction={{ base: "column", sm: "row" }} alignItems="flex-start" mt={'10px'}>
+        <Flex
+          direction={{ base: "column", sm: "row", md: "row" }}
+          alignItems="flex-start"
+          mt={"10px"}
+          width={{
+            base: "100%",
+            sm: "fit-content",
+            md: "fit-content",
+            lg: "100%",
+          }}
+        >
           {forecast.list
             .filter((_, index) => index % 8 === 0)
             .map((item, index) => {
               return (
                 <Flex
                   borderRadius={"20px"}
-                  width={{ base: "100%", sm: "fit-content", md : 'min-content' }}
+                  width={{ base: "100%", sm: "100%", md: "min-content" }}
                   height={"fit-content"}
                   mb={"20px"}
-                  ml={{ base: "0", sm: "20px" }}
+                  ml={{ base: "20px", sm: "20px" }}
                   overflow={"hidden"}
                   key={index}
                   display={"flex"}
@@ -61,17 +73,27 @@ const Day = ({
                     <CardHeader bg={"#accbdf"}>
                       <HStack justifyContent={"space-between"}>
                         <Heading fontSize={{ base: "md", md: "lg" }}>
-                          {new Date(item.dt * 1000).toLocaleDateString("en-US", {
-                            weekday: "long",
-                          })}
+                          {new Date(item.dt * 1000).toLocaleDateString(
+                            "en-US",
+                            {
+                              weekday: "long",
+                            }
+                          )}
                         </Heading>
-                        <Heading fontWeight={"light"} fontSize={{ base: "sm", md: "md" }}>
-                          Feels Like {Math.round(item.main.feels_like - 273.15)}°
+                        <Heading
+                          fontWeight={"light"}
+                          fontSize={{ base: "sm", md: "md" }}
+                        >
+                          Feels Like {Math.round(item.main.feels_like - 273.15)}
+                          °
                         </Heading>
                       </HStack>
                     </CardHeader>
                     <CardBody bg={"#c0d4ec"}>
-                      <Flex alignItems={"center"} justifyContent={"space-between"}>
+                      <Flex
+                        alignItems={"center"}
+                        justifyContent={"space-between"}
+                      >
                         <Heading fontSize={{ base: "xl", md: "xx-large" }}>
                           {Math.round(item.main.temp - 273.15)}°
                         </Heading>
