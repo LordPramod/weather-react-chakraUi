@@ -39,11 +39,9 @@ const NavBar = ({
   return (
     <Box
       as="nav"
-      px={4}
       py={4}
-      bg={colorMode === "light" ? "gray.100" : "gray.900"}
-      shadow="sm"
-      width={{ base: "100%", md: "100%", sm: "100%" }}
+      bg={colorMode === "light" ? "gray.50" : "gray.900"}
+      width={"100%"}
     >
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         <Flex alignItems={"center"}>
@@ -54,7 +52,11 @@ const NavBar = ({
             display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack spacing={8} display={{ base: "none", md: "flex" }} ml={4}>
+          <HStack
+            spacing={8}
+            display={{ base: "none", md: "flex", lg: "flex" }}
+            ml={4}
+          >
             <BiSolidDashboard size={"28px"} />
             <IoIosNotifications size={"28px"} />
             <IoLocationSharp size={"28px"} />

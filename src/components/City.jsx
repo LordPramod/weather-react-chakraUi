@@ -54,12 +54,15 @@ const City = ({ colorMode }) => {
       {cityDetail.map((city, index) => {
         return (
           <Box
-            width={{ base: "100%", sm: "48%", md: "30%", lg: "300px" }} 
+            width={{ base: "100%", sm: "100%", md: "50%", lg: "300px" }}
             borderRadius="16px"
             overflow="hidden"
             key={index}
           >
-            <Card bg={colorMode === "light" ? "gray.50" : "#1b1b1d"}>
+            <Card
+              bg={colorMode === "light" ? "gray.50" : "#1b1b1d"}
+              width={{ base: "100%", sm: "100%", md: "50%", lg: "300px" }}
+            >
               <CardBody color={colorMode === "light" ? "black" : "white"}>
                 <HStack justifyContent="space-between">
                   <Box>

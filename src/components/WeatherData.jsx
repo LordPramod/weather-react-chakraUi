@@ -112,41 +112,41 @@ const WeatherData = ({ colorMode, toggleColorMode }) => {
         />
       </Flex>
       <Stack
-      direction={{ base: "column", md: "row" }}
-      justifyContent="space-between"
-      mt="20px"
-      gap={{ base: "20px", md: "65px" }}
-      width="100%"
-    >
-      <Box
-        borderRadius="20px"
-        boxShadow="2xl"
-        overflow="hidden"
-        width={{ base: "100%", md: "1100px" }}
-        padding={{base :  "20px", lg: '10px'}}
+        direction={{ base: "column", md: "column", lg: "row" }}
+        justifyContent="space-between"
+        mt="20px"
+        gap={{ base: "20px", md: "65px" }}
+        width="100%"
       >
-        <iframe
-          style={{
-            border: colorMode === "light" ? "none" : "none",
-            filter: colorMode === "light" ? "none" : "grayscale(1) invert(1)",
-            width: "100%",
-            height: "400px",
-          }}
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31397712412!2d85.3025764582031!3d27.668968399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19d3cf18ca51%3A0x2b7185c6e7d87a8b!2sLalitpur%2C%20Nepal!5e0!3m2!1sen!2s!4v1709799171899!5m2!1sen!2s"
-        />
-      </Box>
+        <Box
+          borderRadius="20px"
+          boxShadow="2xl"
+          overflow="hidden"
+          width={{ base: "100%", sm: "100%", md: "100%", lg: "75%" }}
+          padding={{ base: "20px", lg: "10px" }}
+        >
+          <iframe
+            style={{
+              border: colorMode === "light" ? "none" : "none",
+              filter: colorMode === "light" ? "none" : "grayscale(1) invert(1)",
+              width: "100%",
+              height: "400px",
+            }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31397712412!2d85.3025764582031!3d27.668968399999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19d3cf18ca51%3A0x2b7185c6e7d87a8b!2sLalitpur%2C%20Nepal!5e0!3m2!1sen!2s!4v1709799171899!5m2!1sen!2s"
+          />
+        </Box>
 
-      <Box
-        borderRadius="20px"
-        overflow="hidden"
-        p="4"
-        width={{ base: "100%", md: "auto" }}
-      >
-        <City colorMode={colorMode} toggleColorMode={toggleColorMode} />
-      </Box>
-    </Stack>
+        <Box
+          borderRadius="20px"
+          overflow="hidden"
+          p="4"
+          width={{ base: "100%", md: "auto" }}
+        >
+          <City colorMode={colorMode} toggleColorMode={toggleColorMode} />
+        </Box>
+      </Stack>
     </>
   );
 };
